@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header bg-secondary">
+                <h5>Employee-List</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>last Name</th>
+                            <th>Email Id</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (item of employees; track $index) {
+                        <tr>
+                            <td>{{item.firstName}}</td>
+                            <td>{{item.lastName}}</td>
+                            <td>{{item.emailId}}</td>
+                            <td>
+                                <a class="card-link">
+                                    <button (click)="updateEmployee(item)" class = "btn btn-success btn-sm">Edit</button>
+                                </a>
+                                <a class="card-link">
+                                    <button (click)="onDelete(item.id)" class = "btn btn-danger btn-sm">Delete</button>
+                                </a>
+                                
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header bg-secondary">
+                <h5>Add-Employee</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="">First Name</label>
+                        <input type="text" [(ngModel)]="addEmployee.firstName" class="form-control">
+                    </div>
+                    <div class="col-12">
+                        <label for="">Last Name</label>
+                        <input type="text" [(ngModel)]="addEmployee.lastName" class="form-control">
+                    </div>
+                    <div class="col-12">
+                        <label for="">Email Id</label>
+                        <input type="text" [(ngModel)]="addEmployee.emailId" class="form-control">
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-6 p-4">
+                        <button class="btn btn-warning">Reset</button>
+                    </div>
+                    <div class="col-6 p-4">
+                        @if ( addEmployee.id == 0) {
+                            <button class="btn btn-success" (click)="onSave()">Save</button>
+                        }@else {
+                            <button class="btn btn-info" (click)="onUpdate()">Update</button>
+                        }
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
